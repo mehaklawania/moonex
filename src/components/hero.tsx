@@ -1,9 +1,18 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 
 export function Hero() {
+  const [innerHeight,setInnerHeight] = useState(0)
+  const [innerWidth,setInnerWidth] = useState(0)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+    setInnerHeight(window.innerHeight)
+    setInnerWidth(window.innerWidth)
+  }
+  }, [])
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Enhanced Background Elements */}
@@ -44,8 +53,8 @@ export function Hero() {
             key={i}
             className="absolute w-1 h-1 bg-white rounded-full"
             initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * innerWidth,
+              y: Math.random() * innerHeight,
               scale: 0,
             }}
             animate={{
